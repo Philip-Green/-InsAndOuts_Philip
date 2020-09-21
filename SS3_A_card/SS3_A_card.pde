@@ -4,16 +4,26 @@
  int x=55;
  int yy=0;
  float dec=89.09;
+ PImage img1;
+ PFont g;
+ 
 void setup(){
   size(600,600);
   rectMode(CENTER);
   //ellipseMode(CENTER);
   background(150);
+  img1=loadImage("Assassiin hood.jpg");
+  g=loadFont("Centaur-48.vlw");
+  textFont(g);
 }
 
  //triangle(55,55,145,145,100,100);
 
 void draw(){
+  image(img1,0,375);
+  textSize(36);
+  fill(0,0,255);
+  text("I will save you",400,575);
  
   while(y<width){
   rect(y,y,90,90);
