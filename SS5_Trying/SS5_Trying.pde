@@ -11,6 +11,7 @@ float gone=0;
 int track_nums=0;
 
 void setup(){
+background(120,75,0);
 size(900,900);
 /*fill(255,100,0);
 numbers[0]=89;
@@ -33,6 +34,7 @@ fish();
 
 
 void eye(){
+//background(120,75,0);
 stroke(120,200,135);
 fill(170,120,35);
 ellipse(100,100,180,180);
