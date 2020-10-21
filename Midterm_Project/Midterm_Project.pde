@@ -1,14 +1,24 @@
+//import processing.video.*;
+//Movie myMovie;
+
+import processing.sound.*;
+
+SoundFile myname;
+
 float gone=0;
 float move=2;
 //float change=120;
 int state=1;
 PFont g;
+PImage img1;
+int[] digits=new int[5];
 
 
 
 void setup(){
 background(218,156,16);
 size(900,900);
+//img1=loadImage("scorpion.jpg");
 g=loadFont("Serif.italic-48.vlw");
 textFont(g);
 }
@@ -16,6 +26,7 @@ textFont(g);
 
 void draw(){
   if(state==1){
+    //background(218,156,16);
     eyes(255,204,0);
     nose();
     smile();
@@ -42,6 +53,7 @@ void draw(){
     
   } else if(state==3){
       echo();
+      numbers();
   }
   //blink();
   println(state);
@@ -69,16 +81,6 @@ triangle(200,200,500,100,700,300);
 }
 
 
-/*void blink(){//Blinking of the eyes
-if(keyPressed==true){
-  change=change+move;
-  change=0;
-}else{
-  change=3;
-}
-
-}*/
-
 void smile(){
 fill(255,255,255);
 arc(500,500,600,400,gone,PI+QUARTER_PI,PIE);
@@ -100,6 +102,7 @@ fill(255,255,255);
 
 void keyPressed(){//Change color of the eyes
 if(key=='k' || key=='K'){
+  background(218,156,16);
   if(state==1){
      state=2;  
   } else if(state==2){
@@ -115,7 +118,26 @@ if(key=='k' || key=='K'){
 
 void echo(){
   background(123,56,79);
-  triangle(120,120,400,200,200,120);
- 
+  myname= new SoundFile(this,"Scream.wav");
+  myname.play();
+  myname.amp(0.3);
+  myname.rate(1);
+  //img1=loadImage("scorpion.jpg");
+  //image(img1,10,10,850,450);
+  //fill(120,156,200);
+  //text("My pet Scorpion",300,500);
+}
+
+void numbers(){
+digits[0]=99;
+digits[1]=100;
+digits[2]=400;
+digits[3]=600;
+digits[4]=400;
+
+textSize(40);
+textAlign(LEFT,LEFT);
+
+println(random(0,digits[1]));
 
 }
