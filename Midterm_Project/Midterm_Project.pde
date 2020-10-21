@@ -1,9 +1,9 @@
 //import processing.video.*;
 //Movie myMovie;
 
-import processing.sound.*;
+//import processing.sound.*;
 
-SoundFile myname;
+//SoundFile myname;
 
 float gone=0;
 float move=2;
@@ -118,14 +118,14 @@ if(key=='k' || key=='K'){
 
 void echo(){
   background(123,56,79);
-  myname= new SoundFile(this,"Scream.wav");
-  myname.play();
-  myname.amp(0.3);
-  myname.rate(1);
-  //img1=loadImage("scorpion.jpg");
-  //image(img1,10,10,850,450);
-  //fill(120,156,200);
-  //text("My pet Scorpion",300,500);
+  //myname= new SoundFile(this,"Scream.wav");
+  //myname.play();
+  //myname.amp(0.3);
+  //myname.rate(1);
+  img1=loadImage("scorpion.jpg");
+  image(img1,10,10,850,450);
+  fill(120,156,200);
+  text("My pet Scorpion",300,500);
 }
 
 void numbers(){
