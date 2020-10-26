@@ -51,7 +51,6 @@ void draw(){
       echo();
       numbers();
   }
-  //blink();
   println(state);
 }
 
@@ -109,10 +108,6 @@ if(key=='k' || key=='K'){
 
 void echo(){
   background(123,56,79);
-  /*myname= new SoundFile(this,"Scream.wav");
-  myname.play(1);
-  myname.amp(0.3);
-  myname.rate(1);*/
   img1=loadImage("scorpion.jpg");
   image(img1,10,10,850,450);
   fill(120,156,200);
