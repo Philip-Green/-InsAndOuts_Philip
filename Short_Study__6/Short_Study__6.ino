@@ -1,11 +1,4 @@
-  
-/*
-  Blink
-  Turns an LED on for one second, then off for one second, in an infinite loop.
-  Create LED circuit with LED connected to digital pin 13.
- Modified from Arduino example code:
-  http://www.arduino.cc/en/Tutorial/Blink
-*/
+
 
 
 // Use comments to make your code more readable. 
