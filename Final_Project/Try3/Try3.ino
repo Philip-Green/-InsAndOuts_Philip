@@ -1,4 +1,4 @@
-#include <NewPing.h>
+//#include <NewPing.h>
 
   
 /*
@@ -18,19 +18,21 @@ Echo to Arduino pin 13
 Trig to Arduino pin 12
 */
 
-
-const int trigPin = 13;
-const int echoPin = 12;
 long duration, distance;
 const int LED1=9;
+const int trigPin = 13;
+const int echoPin = 12;
 const int LED2=8;
 const int LED3=11;//LED pin
 const int LED4=10;
-int val=0;
+const int buttonPin=2;
+//int val=0;
+int buttonState;
 //NewPing sonar(trigPin, echoPin,
 
 void setup() {
   Serial.begin (9600);
+  pinMode(buttonPin,INPUT);
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
   pinMode (LED1, OUTPUT);
@@ -42,6 +44,8 @@ void setup() {
 void loop() {
   //val= digitalRead(trigPin);
   //val/=4;
+ buttonState= digitalRead(buttonPin);
+  delay(10);
   digitalWrite(trigPin, LOW);  
   delayMicroseconds(2); 
   digitalWrite(trigPin, HIGH);
@@ -65,11 +69,12 @@ void loop() {
     }  
   
   if (distance >= 200 || distance <= 0){
-    Serial.println("Out of range");
+    Serial.write("Out of range");
   }
   else {
-    Serial.print(distance);
-    Serial.println(" cm");
+    Serial.write(distance);
+    Serial.write(" cm");
+    //Serial.write(BUTTONval);
   }
   delay(500);
 }
