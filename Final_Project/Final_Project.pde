@@ -1,34 +1,34 @@
-
+/*
+Rotation example.
+ 
+ Rotating a square from its center point, with MouseX input.
+ 
+ */
 import processing.serial.*;
-int val=0;
+float angle;
 Serial myPort;
 PImage img;
-//int serialIn;
+int val=0;
+int SENSOR;
 
-
-void setup(){
-size(600,600);
-printArray(Serial.list());
-String portName=Serial.list()[0];
-myPort= new Serial(this,portName,9600);
-img= loadImage("Color Wheel.png");
-imageMode(CENTER);
-//img.resize(500,500);
+void setup() {
+  size(600, 600);
+  printArray(Serial.list());
+  String portName=Serial.list()[0];
+  myPort=new Serial(this,portName,9600);
+  //noStroke();
+  //fill(255);
+  imageMode(CENTER); //Center the rect
+  img=loadImage("Color Wheel.png");
 }
 
-
-void draw(){
-  if( myPort.available()>0){
-     val=myPort.read(); 
-  }
-  
-  background(204);
-  image(img,width/2,height/2,val,val);
-  println(val);
-  val=int(map(val,0,50,100,500));
-}
-
-
-void rotate(){
-
+void draw() {
+  background(0);
+  pushMatrix(); //saves current coordinate system
+  angle = map (SENSOR, 0, width, 0, 360); //remap mouseX value to 0-360 
+  translate(width/2, height/2); //shifts coordinates
+  rotate(radians(angle)); //changes angle degrees to radians and rotates
+  image(img,width/8,height/8);
+  //rect(0, 0, 75, 75); //displays rect - notice diff coordinates  
+  popMatrix(); //restores prior coordinate system
 }

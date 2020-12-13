@@ -1,80 +1,40 @@
-//#include <NewPing.h>
-
-  
 /*
-Ultrasonic Distance Sensor Demo
-Modifed by AB from https://www.instructables.com/Simple-Arduino-and-HC-SR04-Example/
-Use for HC-SR04 type ping distance sensor
-(If using US-100 type, make sure no back jumper is connected)
-For US-100 type Ultrasonic sensor and UART mode, see:
-https://www.adafruit.com/product/4019 
-https://github.com/stoduk/PingSerial
-For more on pulseIn(): 
-https://www.arduino.cc/reference/en/language/functions/advanced-io/pulsein/
-***Wiring***
-VCC to arduino 5v 
-GND to arduino GND (note: may be 1 or 2 GND pins)
-Echo to Arduino pin 13 
-Trig to Arduino pin 12
+  Analog sensor input with a potentiomenter 
+  controlling PWM output to an LED.
+  
+  Connect potentiometer middle pin to Analog A0. Connect one outer pin to ground, the other to 5V.
+  Connect LED (annode side) to PWM pin 11. Connect cathode side to 220-230 ohm resistor and to ground.
+  Uncomment for Serial communication.
 */
 
-long duration, distance;
-const int LED1=9;
-const int trigPin = 13;
-const int echoPin = 12;
-const int LED2=8;
+const int LED1=13;
+const int LED2=12;
 const int LED3=11;//LED pin
 const int LED4=10;
-const int buttonPin=2;
-//int val=0;
-int buttonState;
-//NewPing sonar(trigPin, echoPin,
+const int SENSOR = A0;  //potentiometer middle pin
+int reading = 0; // to track potentiometer reading
+int val=0;
 
 void setup() {
-  Serial.begin (9600);
-  pinMode(buttonPin,INPUT);
-  pinMode(trigPin, OUTPUT);
-  pinMode(echoPin, INPUT);
   pinMode (LED1, OUTPUT);
   pinMode (LED2,OUTPUT);
   pinMode (LED3,OUTPUT);
   pinMode (LED4,OUTPUT);// initialize LED pin as digital output
+  //note: no need to initialize analog inputs as those pins can only be inputs
+  pinMode(SENSOR,INPUT);
+ // Serial.begin(9600);
+  Serial.begin(9600);  // initialize serial communication at 9600 bits per second
 }
 
 void loop() {
-  //val= digitalRead(trigPin);
-  //val/=4;
- buttonState= digitalRead(buttonPin);
-  delay(10);
-  digitalWrite(trigPin, LOW);  
-  delayMicroseconds(2); 
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10); 
-  digitalWrite(trigPin, LOW);
-  
-  duration = pulseIn(echoPin, HIGH);
-  distance = (duration/2) / 29.1;
+  val = analogRead(SENSOR);     // reads pot 0 to 1023            
+  val /= 4;
+  delay(100);
+  analogWrite (LED1, val);  
+  analogWrite(LED2, val);
+  analogWrite (LED3, val);
+  analogWrite(LED4, val);// reduces value to match PWM output range 0-255
 
-  if(distance<4){
-    digitalWrite(LED1,HIGH);
-    digitalWrite(LED2,LOW);
-    digitalWrite(LED3,HIGH);
-    digitalWrite(LED4,LOW);
-  }
-   else{
-    digitalWrite(LED1,LOW);
-    digitalWrite(LED2,HIGH);
-    digitalWrite(LED3,LOW);
-    digitalWrite(LED4,HIGH);
-    }  
-  
-  if (distance >= 200 || distance <= 0){
-    Serial.write("Out of range");
-  }
-  else {
-    Serial.write(distance);
-    Serial.write(" cm");
-    //Serial.write(BUTTONval);
-  }
-  delay(500);
+  //Serial.println (val);  // prints to Serial monitor
+  Serial.write(val);
 }
