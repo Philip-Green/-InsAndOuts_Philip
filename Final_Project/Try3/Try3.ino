@@ -1,22 +1,6 @@
 //#include <NewPing.h>
 
-  
-/*
-Ultrasonic Distance Sensor Demo
-Modifed by AB from https://www.instructables.com/Simple-Arduino-and-HC-SR04-Example/
-Use for HC-SR04 type ping distance sensor
-(If using US-100 type, make sure no back jumper is connected)
-For US-100 type Ultrasonic sensor and UART mode, see:
-https://www.adafruit.com/product/4019 
-https://github.com/stoduk/PingSerial
-For more on pulseIn(): 
-https://www.arduino.cc/reference/en/language/functions/advanced-io/pulsein/
-***Wiring***
-VCC to arduino 5v 
-GND to arduino GND (note: may be 1 or 2 GND pins)
-Echo to Arduino pin 13 
-Trig to Arduino pin 12
-*/
+//parts of used from class demos, arduino website, and from the Professor. 
 
 long duration, distance;
 const int LED1=9; 
@@ -71,7 +55,7 @@ void loop() {
     digitalWrite(LED4,HIGH);
     }  
   
-  if (distance >= 500 || distance <= 0){
+  if (distance >= 100 || distance <= 0){
     //Serial.write("Out of range");
   }
   else {

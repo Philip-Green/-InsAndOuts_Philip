@@ -1,6 +1,5 @@
- Rotating an image from its center point, with sensor input.
- 
- */
+ //Rotating an image from its center point, with sensor input.
+ //parts of used from class demos, processing website, and from the Professor. 
 import processing.serial.*;
 float angle;
 Serial myPort;
